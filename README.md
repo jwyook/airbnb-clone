@@ -12,6 +12,11 @@ python manage.py runserver
 
 python manage.py createsuperuser
 
+# How to make New Folder
+
+1. Kill the Server
+2. django-admin startapp NAME
+
 # 2.4 Django Migrations
 
 맨 처음 project를 생성하면 우리의 data base는 empty상태이다.
