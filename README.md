@@ -134,3 +134,23 @@ return obj.photos.count()를 통하여 사진의 수를 반환함
 10. 모든 Item들에 적용하기
     RoomType, Facility, Amenity, 등등 모두 ItemAdmin class를 상속받아 확장시킨 class들 임.
     따라서 ItemAdmin에서 list_display 에 관한 코드 작성시 전체에 적용됨
+
+# 8.0 More Admins
+
+1. model 안의 함수 만들기
+   admin 페널이 아닌 model안에 함수를 구현하는 이유
+   => admin에 구현해 두면 superuser인 사람만이 확인 가능하다.
+
+하지만 우리의 평점은 모든 사람들이 확인할 수 있는 정보여야 한다.
+따라서 model안에 구현한다.
+이렇게 model안에 구현한 함수는 admin 패널의 list_dislpay를 활용하여
+확인할 수 있다.
+
+2. total_rating(self) 함수에 대하여
+   rooms(1) 과 review(N) 는 ForeignKey 관계를 갖고 있습니다.
+   따라서 review가 rooms을 참조하고 있는 상황입니다.
+
+하지만 우리는 room의 입장에서 역참조를 하여서 review의 평점들을 얻은 후
+평균내어서 total_rating을 만들고 싶은 것 입니다.
+
+따라서 all_reviews = self.reviews.all() 를 통하여 역참조를 하고 있는 것 입니다.
